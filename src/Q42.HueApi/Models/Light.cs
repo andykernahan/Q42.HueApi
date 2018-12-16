@@ -69,6 +69,26 @@ namespace Q42.HueApi
   }
 
   [DataContract]
+  public class ColorTemperatureLightCapabilities
+  {
+    [DataMember(Name = "min")]
+    public int Min { get; set; }
+    [DataMember(Name = "max")]
+    public int Max { get; set; }
+  }
+
+  [DataContract]
+  public class ControlLightCapabilities
+  {
+    [DataMember(Name = "mindimlevel")]
+    public int? MinDimLevel { get; set; }
+    [DataMember(Name = "maxlumen")]
+    public int? MaxLumen { get; set; }
+    [DataMember(Name = "ct")]
+    public ColorTemperatureLightCapabilities ColorTemperature { get; set; }
+  }
+
+  [DataContract]
   public class StreamingLightCapabilities
   {
     [DataMember(Name = "renderer")]
@@ -80,6 +100,8 @@ namespace Q42.HueApi
   [DataContract]
   public class LightCapabilities
   {
+    [DataMember(Name = "control")]
+    public ControlLightCapabilities Control { get; set; }
     [DataMember(Name = "streaming")]
     public StreamingLightCapabilities Streaming { get; set; }
   }
